@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:pagina_vendas/pagina_vendas.dart';
+import 'sales_page.dart'; // Importe a sua página principal
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      home: const SalesPageApp(),
+      debugShowCheckedModeBanner: false, // Remove aquela etiqueta de "Debug"
+      title: 'Brazilian Beauty Code',
+      theme: ThemeData(
+        brightness: Brightness.dark, // Define o tema escuro como base
+        scaffoldBackgroundColor: const Color(0xFF09090B), // Cor de fundo global
+        fontFamily: 'Arial', // Ou a fonte que você estiver usando
+      ),
+      home: SalesPage(), // <-- AQUI É ONDE A MÁGICA ACONTECE
     );
   }
 }
