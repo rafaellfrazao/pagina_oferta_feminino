@@ -293,7 +293,7 @@ class SalesBottomSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: const [
-              Text("\$19", style: TextStyle(color: Color(0xFFFFC636), fontSize: 56, fontWeight: FontWeight.w900, height: 1.0)),
+              Text("\$12", style: TextStyle(color: Color(0xFFFFC636), fontSize: 56, fontWeight: FontWeight.w900, height: 1.0)),
               SizedBox(width: 12),
               Text(
                 "\$39",
