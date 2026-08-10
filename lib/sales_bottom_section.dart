@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'responsive.dart';
 
 class SalesBottomSection extends StatelessWidget {
   const SalesBottomSection({Key? key}) : super(key: key);
+
+  // Método auxiliar para abrir o link de checkout em qualquer botão
+  Future<void> _launchCheckout() async {
+    final Uri url = Uri.parse('https://pay.hotmart.com/Y107092223A?off=h7ia16qz');
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,18 +164,23 @@ class SalesBottomSection extends StatelessWidget {
           children: [
             _buildReviewCard(
               "Sarah M.",
-              "https://i.pravatar.cc/100?img=5",
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
               "The coffee and coconut scrub from Module 2 alone was worth it. My skin has never felt this soft.",
             ),
             _buildReviewCard(
               "Jessica L.",
-              "https://i.pravatar.cc/100?img=9",
+              "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
               "I love that every recipe uses stuff I already had at home. So simple, but so effective!",
             ),
             _buildReviewCard(
               "Amanda R.",
-              "https://i.pravatar.cc/100?img=12",
+              "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80",
               "I'm on Module 3 now and I'm already glowing. Easy to follow and genuinely fun to do.",
+            ),
+            _buildReviewCard(
+              "Camila S.",
+              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+              "The natural glow is real! Everyone has been asking me what skincare routine I'm using now.",
             ),
           ],
         )
@@ -217,7 +231,7 @@ class SalesBottomSection extends StatelessWidget {
       },
       {
         "q": "Is there a refund policy?",
-        "a": "Yes. If you're not satisfied for any reason, you have 30 days from your purchase date to request a full refund, no questions asked.",
+        "a": "Yes. If you're not satisfied for any reason, you have 7 days from your purchase date to request a full refund, no questions asked.",
       },
       {
         "q": "Is this a physical product?",
@@ -291,13 +305,13 @@ class SalesBottomSection extends StatelessWidget {
           _buildCheckItem("Full Access to All 4 Modules"),
           _buildCheckItem("30 Step-by-Step Brazilian Recipes"),
           _buildCheckItem("Lifetime Access, Any Device"),
-          _buildCheckItem("30-Day Money-Back Guarantee"),
+          _buildCheckItem("7-Day Money-Back Guarantee"),
           const SizedBox(height: 32),
           SizedBox(
             width: double.infinity,
             height: 56,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: _launchCheckout,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFFFC636),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -390,7 +404,7 @@ class SalesBottomSection extends StatelessWidget {
           Column(
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _launchCheckout,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFFFC636),
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -405,7 +419,7 @@ class SalesBottomSection extends StatelessWidget {
                 children: const [
                   Icon(Icons.lock_outline, color: Colors.white54, size: 12),
                   SizedBox(width: 4),
-                  Text("30-Day Money-Back Guarantee", style: TextStyle(color: Colors.white54, fontSize: 11)),
+                  Text("7-Day Money-Back Guarantee", style: TextStyle(color: Colors.white54, fontSize: 11)),
                 ],
               )
             ],

@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'responsive.dart';
 
 class SalesHeroSection extends StatelessWidget {
   const SalesHeroSection({Key? key}) : super(key: key);
+
+  // Método auxiliar para abrir o link de checkout
+  Future<void> _launchCheckout() async {
+    final Uri url = Uri.parse('https://pay.hotmart.com/Y107092223A?off=h7ia16qz');
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +186,7 @@ class SalesHeroSection extends StatelessWidget {
               _buildCheckItem("Works On Any Device"),
               _buildCheckItem("Natural & Affordable Ingredients"),
               _buildCheckItem("Real Results That Last"),
-              _buildCheckItem("30-Day Money-Back Guarantee"),
+              _buildCheckItem("7-Day Money-Back Guarantee"),
             ],
           ),
         ),
@@ -253,7 +262,7 @@ class SalesHeroSection extends StatelessWidget {
 
   Widget _buildMainCTA() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: _launchCheckout, // <-- Chamando a função de redirecionamento aqui
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFFFC636),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -283,7 +292,7 @@ class SalesHeroSection extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: const [
             Text(
-              "30-Day Money-Back Guarantee", 
+              "7-Day Money-Back Guarantee", 
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
             ),
             Text(
@@ -304,10 +313,10 @@ class SalesHeroSection extends StatelessWidget {
           height: 32,
           child: Stack(
             children: [
-              Positioned(left: 0, child: _avatar('https://i.pravatar.cc/100?img=1')),
-              Positioned(left: 20, child: _avatar('https://i.pravatar.cc/100?img=2')),
-              Positioned(left: 40, child: _avatar('https://i.pravatar.cc/100?img=3')),
-              Positioned(left: 60, child: _avatar('https://i.pravatar.cc/100?img=4')),
+              Positioned(left: 0, child: _avatar('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80')),
+              Positioned(left: 20, child: _avatar('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80')),
+              Positioned(left: 40, child: _avatar('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80')),
+              Positioned(left: 60, child: _avatar('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80')),
             ],
           ),
         ),
@@ -320,7 +329,7 @@ class SalesHeroSection extends StatelessWidget {
                 children: List.generate(5, (index) => const Icon(Icons.star, color: Color(0xFFFFC636), size: 14)),
               ),
               const Text(
-                "Join 10,000+ women who are transforming\ntheir skin with the Brazilian Beauty Code.",
+                "Join 1,000+ women who are transforming\ntheir skin with the Brazilian Beauty Code.",
                 style: TextStyle(color: Colors.white70, fontSize: 11),
               )
             ],

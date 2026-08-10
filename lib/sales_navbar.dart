@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'responsive.dart'; // Importando a sua classe de responsividade
 
 class SalesNavbar extends StatelessWidget {
   const SalesNavbar({Key? key}) : super(key: key);
+
+  // Método auxiliar para abrir o link de checkout
+  Future<void> _launchCheckout() async {
+    final Uri url = Uri.parse('https://pay.hotmart.com/Y107092223A?off=h7ia16qz');
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +115,7 @@ class SalesNavbar extends StatelessWidget {
   // Constrói o botão amarelo da direita
   Widget _buildCtaButton(bool hideNavLinks) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: _launchCheckout,
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFFFC636), // Amarelo/Dourado
         foregroundColor: Colors.black, // Texto preto
