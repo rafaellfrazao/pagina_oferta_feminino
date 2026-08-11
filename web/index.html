@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order
-    for it to work correctly.
-
-    For more details:
-    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-  -->
-
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -58,14 +47,7 @@
       'https://connect.facebook.net/en_US/fbevents.js'
     );
 
-    /*
-     * Inicializa o Pixel
-     */
     fbq('init', '936879856136053');
-
-    /*
-     * Evento padrão de carregamento da página
-     */
     fbq('track', 'PageView');
   </script>
 
@@ -82,9 +64,11 @@
   <!-- End Meta Pixel Code           -->
   <!-- ============================= -->
 
-
   <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
+  <meta
+    name="mobile-web-app-capable"
+    content="yes"
+  >
 
   <meta
     name="apple-mobile-web-app-status-bar-style"
@@ -101,18 +85,15 @@
     href="icons/Icon-192.png"
   >
 
-
   <!-- Favicon -->
   <link
     rel="icon"
     type="image/png"
     href="favicon.png"
-  />
-
+  >
 
   <!-- Page title -->
   <title>Brazilian Body Care</title>
-
 
   <!-- Manifest -->
   <link
@@ -124,10 +105,7 @@
 
 <body>
 
-  <!--
-    Flutter Web Bootstrap
-  -->
-
+  <!-- Flutter Web Bootstrap -->
   <script
     src="flutter_bootstrap.js"
     async>
