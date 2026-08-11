@@ -6,15 +6,19 @@ class MetaPixelHelper {
   /// Track a standard Meta Pixel event
   static void trackEvent(String eventName, [Map<String, dynamic>? parameters]) {
     try {
-      if (kIsWeb) {
-        final fbq = js.context['fbq'];
-        if (fbq != null) {
-          if (parameters != null) {
-            fbq.callMethod('track', [eventName, js.JsObject.jsify(parameters)]);
-          } else {
-            fbq.callMethod('track', [eventName]);
-          }
-        }
+      if (!kIsWeb) return;
+      
+      final fbq = js.context['fbq'];
+      if (fbq == null) {
+        print('Meta Pixel fbq not available');
+        return;
+      }
+
+      if (parameters != null && parameters.isNotEmpty) {
+        final jsParams = js.JsObject.jsify(parameters);
+        fbq.callMethod('track', [eventName, jsParams]);
+      } else {
+        fbq.callMethod('track', [eventName]);
       }
     } catch (e) {
       print('Error tracking Meta Pixel event: $e');
