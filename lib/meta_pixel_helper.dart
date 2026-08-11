@@ -4,11 +4,15 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 /// Helper class for Meta Pixel tracking
 class MetaPixelHelper {
   /// Track a standard Meta Pixel event
-  static void trackEvent(String eventName, [Map<String, dynamic>? parameters]) {
+  static void trackEvent(
+    String eventName, [
+    Map<String, dynamic>? parameters,
+  ]) {
     try {
       if (!kIsWeb) return;
-      
+
       final fbq = js.context['fbq'];
+
       if (fbq == null) {
         print('Meta Pixel fbq not available');
         return;
@@ -23,6 +27,16 @@ class MetaPixelHelper {
     } catch (e) {
       print('Error tracking Meta Pixel event: $e');
     }
+  }
+
+  /// Track ViewContent event
+  static void trackViewContent() {
+    trackEvent('ViewContent', {
+      'content_category': 'Beauty',
+      'content_name': 'Brazilian Beauty Code',
+      'currency': 'USD',
+      'value': 12.00,
+    });
   }
 
   /// Track InitiateCheckout event

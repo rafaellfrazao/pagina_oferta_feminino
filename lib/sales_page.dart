@@ -3,34 +3,47 @@ import 'responsive.dart';
 import 'sales_navbar.dart';
 import 'sales_hero_section.dart';
 import 'sales_bottom_section.dart';
+import 'meta_pixel_helper.dart';
 
-class SalesPage extends StatelessWidget {
+class SalesPage extends StatefulWidget {
   const SalesPage({Key? key}) : super(key: key);
+
+  @override
+  State<SalesPage> createState() => _SalesPageState();
+}
+
+class _SalesPageState extends State<SalesPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Aguarda a página ser carregada antes de disparar o evento.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      MetaPixelHelper.trackViewContent();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Scaffold(
-        backgroundColor: const Color(0xFF09090B), // Cor de fundo principal
+        backgroundColor: const Color(0xFF09090B),
         body: SingleChildScrollView(
           child: Column(
             children: [
               // 1. MENU SUPERIOR
               const SalesNavbar(),
 
-              // 2. HERO SECTION (A dobra com a foto e o título)
+              // 2. HERO SECTION
               const SalesHeroSection(),
 
-              // 3. FAIXA "AS SEEN IN" (Logos das revistas)
-              // ATENÇÃO: mantida desativada de propósito. Exibir logos de veículos
-              // como Vogue, Elle ou Cosmopolitan implica que o produto foi
-              // citado por eles. Se isso não for verdade, é propaganda enganosa
-              // e pode gerar problema legal (nos EUA, isso cai sob regras da FTC
-              // sobre "endorsements" falsos). Só reative se o produto tiver sido
-              // genuinamente mencionado por esses veículos.
+              // 3. FAIXA "AS SEEN IN"
+              // Desativada de propósito.
+              // Só deve ser ativada se essas publicações realmente
+              // tiverem mencionado o produto.
               // _buildAsSeenInBanner(),
 
-              // 4. CONTEÚDO INFERIOR (Cards, FAQ, Preço)
+              // 4. CONTEÚDO INFERIOR
               const SalesBottomSection(),
             ],
           ),
@@ -44,7 +57,10 @@ class SalesPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: const Color(0xFFF3EFE9),
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      padding: const EdgeInsets.symmetric(
+        vertical: 24,
+        horizontal: 16,
+      ),
       child: Wrap(
         alignment: WrapAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
@@ -77,7 +93,7 @@ class SalesPage extends StatelessWidget {
         color: Colors.black,
         fontWeight: FontWeight.w900,
         fontSize: 22,
-        fontFamily: 'Times New Roman', // Simula fonte serifada de revista
+        fontFamily: 'Times New Roman',
         letterSpacing: 1.2,
       ),
     );
