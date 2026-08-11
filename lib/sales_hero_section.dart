@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'responsive.dart';
+import 'meta_pixel_helper.dart';
 
 class SalesHeroSection extends StatelessWidget {
   const SalesHeroSection({Key? key}) : super(key: key);
 
   // Método auxiliar para abrir o link de checkout
   Future<void> _launchCheckout() async {
+    MetaPixelHelper.trackInitiateCheckout();
     final Uri url = Uri.parse('https://pay.hotmart.com/Y107092223A?off=h7ia16qz');
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
